@@ -24,7 +24,6 @@ module.exports = {
    */
   login: function (req, res) {
     // すでにログインしている場合
-    console.log(req.session);
     if (req.session.hasOwnProperty('userId') && req.session.userId) {
 	return res.redirect('/room/');
     }
