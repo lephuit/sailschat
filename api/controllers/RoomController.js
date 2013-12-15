@@ -23,12 +23,16 @@ module.exports = {
    *    `/room/index`
    *    `/room`
    */
-   index: function (req, res) {
-    
-    // Send a JSON response
-    return res.json({
-      hello: 'world'
-    });
+  index: function (req, res) {
+      if (!req.session.hasOwnProperty('userId') || !req.session.userId) {
+	  return res.redirect('/user/login');
+      }
+      User.findOne(req.session.userId).done(function(err, user) {
+	  if (err) {
+	      return res.redirect('/user/login');
+	  }
+	  return res.view({user:user});
+      });
   },
 
 
