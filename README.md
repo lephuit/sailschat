@@ -1,0 +1,2 @@
+# sailschat
+### a Sails application
